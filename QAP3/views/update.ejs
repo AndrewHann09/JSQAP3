@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+    <h1><%= title %></h1>
+    <form id="updateForm" method="POST">
+        <label for="item_name">Item Name:</label>
+        <input type="text" id="item_name" name="item_name" value="<%= item.item_name %>" required>
+        <br>
+        <label for="description">Description:</label>
+        <textarea id="description" name="description"><%= item.description %></textarea>
+        <br>
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" step="0.01" value="<%= item.price %>" required>
+        <br>
+        <button type="button" onclick="submitForm('<%= itemId %>')">Update Menu Item</button>
+        <button type="button" onclick="deleteItem('<%= itemId %>')">Delete Menu Item</button>
+    </form>
+
+    <script>
+        function submitForm(itemId) {
+            const formData = new FormData(document.getElementById('updateForm'));
+
+            fetch(`/api/update/${itemId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(Object.fromEntries(formData)),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+        function deleteItem(itemId) {
+            fetch(`/api/menu-items/${itemId}`, {
+                method: 'DELETE',
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log(`Item ${itemId} deleted`);
+                } else {
+                    console.error('Error:', response.statusText);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>

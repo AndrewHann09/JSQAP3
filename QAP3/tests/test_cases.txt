@@ -1,0 +1,8 @@
+1. As a Martha’s Good Eats customer, I can see a web page listing all the menu items from the database.
+2. As a Martha’s Good Eats business partner, I can fetch all the menu items from the database from a REST API. The records will be returned as JSON data.
+3. As a Martha’s Good Eats staff member, I can see a web page that will allow me to add a new item to the menu of the database.
+4. As a Martha’s Good Eats staff member, I can update an existing menu item on the web page.
+5. As a Martha’s Good Eats staff member, I can delete an existing menu item on the web page.
+6. As a Martha’s Good Eats business partner, I can add a new item to the menu via the REST API.
+7. As a Martha’s Good Eats business partner, I can update an existing menu item via the REST API.
+8. As a Martha’s Good Eats business partner, I can delete an existing menu item via the REST API.
